@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+	<head>
+		<link rel="stylesheet" href="css/style.css">
+		<link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+		<title> Create Club </title>
+
+	</head>
+
+	<body>
+		
+		<?php
+			include "nav.php";
+			
+		?>
+		<br><br><br>
+		<h2> Create Club </h2>
+		<div class="box">
+		<form name="createclub" method="POST" action="submitclub.php">
+			<input type="text" placeholder="Hobby Club ID" name="hobbyid" required pattern="[0-9]{2}" title="Enter 2 digit Hobby ID Club"> <br>
+			<input type="text" placeholder="Club Name" name="clubname" pattern="[A-Za-z]+" title="Only alphabets allowed" required> <br>
+			<input type="text" placeholder="Class Room" name="classroomid" pattern="[0-9]{3}"required> <br>
+			
+			<input type="submit" value="Submit"> 
+			<input type="reset" value="Reset">
+		</form>
+	</body>
+</html> 
