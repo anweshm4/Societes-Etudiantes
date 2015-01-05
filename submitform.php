@@ -25,5 +25,5 @@
 
 		$query=" INSERT INTO student (registerno, name, clubid, emailid, joindate, AGP, CCGP) VALUES ($registerno,'$name',$hobbyid,'$emailid','$joindate', $agp, $ccgp);";
 		mysqli_query($con, $query) or die(mysqli_error());
-		header('Location: viewrecord.php');
+		header('Location: viewstudent.php');
 	?>

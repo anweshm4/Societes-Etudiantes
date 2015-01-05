@@ -13,35 +13,23 @@
 		$db=mysqli_select_db($con, "Hobbyclub")or die('database not changed');
 		//echo'<br>'."Connection To Database Established"."<br>";
 		// Academic GP + Co-curricular GP of all students / total number of students
-		?>
-
-		<h2> Championship Table </h2>
-
-		<table name="championshiptable">
-			<tr>
-				<th> Club ID </th>
-				<th> Club Name </th>
-				<th> Points </th>
-			</tr>
-			<tr>
-				<td> 2 </td>	
-				<td> 
-
-
-
-		</td>
-		</tr>
-		</table>
-
-		<?php 
-		$value=mysqli_query($con, "Select AGP, CCGP from student where clubid=4") or die("Error");
-		$i=0;
-		while($row = mysqli_fetch_assoc($value))
+		
+		$result=mysqli_query($con, "SELECT DISTINCT clubid, (AGP + CCGP) as Total from student;") or die("Error");
+		if (mysqli_num_rows($result) > 0)
 		{
-			
-			$AGP[i]=(int) $row['AGP'];
-			var_dump($AGP);
-			$CCGP[i]=(int) $row['CCGP'];
-			echo $totalGP[i]=$AGP[i]+$CCGP[i];
-			
-		}
+    	// output data of each row
+    	echo "<table border='1' cellpadding='5' cellspacing='5' width='90%'><thead> <tr><th>Club Name </th> <th> Total </th><th> Rank </th></tr> </thead> <br><br>";
+        while($row = mysqli_fetch_assoc($result))
+    	{	
+   		 	echo "<tr> <td>" . $row["clubid"]."</td>
+   		 	<td>". $row["Total"]. "</td>
+        	</tr>";
+        }	
+
+	  	echo "</table>";
+	} 
+
+	else
+ 	{
+    	echo "0 results";
+	}
