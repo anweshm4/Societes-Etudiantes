@@ -14,14 +14,15 @@
 		//echo'<br>'."Connection To Database Established"."<br>";
 		// Academic GP + Co-curricular GP of all students / total number of students
 		
-		$result=mysqli_query($con, "SELECT DISTINCT clubid, (AGP + CCGP) as Total from student;") or die("Error");
+		$result=mysqli_query($con, "SELECT s.name, c.clubname, (s.AGP + s.CCGP) as Total from student s JOIN club c order by Total desc;") or die("Error");
+		$rank=1;
 		if (mysqli_num_rows($result) > 0)
 		{
     	// output data of each row
     	echo "<table border='1' cellpadding='5' cellspacing='5' width='90%'><thead> <tr><th>Club Name </th> <th> Total </th><th> Rank </th></tr> </thead> <br><br>";
         while($row = mysqli_fetch_assoc($result))
     	{	
-   		 	echo "<tr> <td>" . $row["clubid"]."</td>
+   		 	echo "<tr> <td>" . $row["name"]."</td>
    		 	<td>". $row["Total"]. "</td>
         	</tr>";
         }	

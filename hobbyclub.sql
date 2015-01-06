@@ -38,7 +38,7 @@ CREATE TABLE `club` (
 
 LOCK TABLES `club` WRITE;
 /*!40000 ALTER TABLE `club` DISABLE KEYS */;
-INSERT INTO `club` VALUES (10,'Dancing',556),(11,'Singing',445),(16,'Sailing',544),(20,'Poetry',453),(56,'Aerobics',557);
+INSERT INTO `club` VALUES (1,'Quizzing',443),(2,'Coding',444),(3,'Maths',446),(4,'Chemistry',448),(5,'Physics',449),(6,'Electronics',431),(7,'Graphics',442);
 /*!40000 ALTER TABLE `club` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,10 +50,13 @@ DROP TABLE IF EXISTS `mentor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `mentor` (
-  `mentorid` int(5) DEFAULT NULL,
-  `username` varchar(30) DEFAULT NULL,
-  `name` varchar(30) DEFAULT NULL,
-  `clubid` int(5) DEFAULT NULL
+  `mentorid` int(5) NOT NULL DEFAULT '0',
+  `mentorname` varchar(30) DEFAULT NULL,
+  `emailid` varchar(40) DEFAULT NULL,
+  `clubid` int(5) DEFAULT NULL,
+  PRIMARY KEY (`mentorid`),
+  KEY `clubid` (`clubid`),
+  CONSTRAINT `mentor_ibfk_1` FOREIGN KEY (`clubid`) REFERENCES `club` (`clubid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -63,6 +66,7 @@ CREATE TABLE `mentor` (
 
 LOCK TABLES `mentor` WRITE;
 /*!40000 ALTER TABLE `mentor` DISABLE KEYS */;
+INSERT INTO `mentor` VALUES (1,'Joy Paulose','joy.paulose@christuniversity.in',6),(2,'Rajeshwari CN','rajeshwari.cn@christuniversity.in',3),(3,'Rohini V','rohini.v@christuniversity.in',4),(4,'Vinay M','vinay.m@christuniversity.in',2),(5,'Nachamai M','nachamai.m@christuniversity.in',5),(6,'Jibrael Jos','jibrael.jos@christuniversity.in',1),(7,'Vaidehi V','vaidehi.v@christuniversity.in',7);
 /*!40000 ALTER TABLE `mentor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,11 +78,15 @@ DROP TABLE IF EXISTS `president`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `president` (
-  `presidentid` int(5) DEFAULT NULL,
-  `username` varchar(30) DEFAULT NULL,
+  `presidentid` int(2) NOT NULL AUTO_INCREMENT,
   `registerno` int(7) DEFAULT NULL,
-  `clubid` int(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `clubid` int(5) DEFAULT NULL,
+  PRIMARY KEY (`presidentid`),
+  KEY `registerno` (`registerno`),
+  KEY `clubid` (`clubid`),
+  CONSTRAINT `president_ibfk_1` FOREIGN KEY (`registerno`) REFERENCES `student` (`registerno`),
+  CONSTRAINT `president_ibfk_2` FOREIGN KEY (`clubid`) REFERENCES `club` (`clubid`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,6 +95,7 @@ CREATE TABLE `president` (
 
 LOCK TABLES `president` WRITE;
 /*!40000 ALTER TABLE `president` DISABLE KEYS */;
+INSERT INTO `president` VALUES (2,1425008,2),(3,1425006,6),(4,1425019,3),(5,1425004,4),(6,1425012,1),(7,1425043,5),(8,1425010,7);
 /*!40000 ALTER TABLE `president` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +138,9 @@ CREATE TABLE `student` (
   `joindate` date NOT NULL,
   `AGP` mediumint(9) DEFAULT NULL,
   `CCGP` mediumint(9) DEFAULT NULL,
-  PRIMARY KEY (`registerno`)
+  PRIMARY KEY (`registerno`),
+  KEY `clubid` (`clubid`),
+  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`clubid`) REFERENCES `club` (`clubid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -139,7 +150,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1425001,'Aju Anthony',4,'aju.anthony@cs.christuniversity.in','2014-11-20',45,55),(1425002,'Amlan Saikia',3,'amlan.saikia@cs.christuniversity.in','2014-11-20',80,55),(1425003,'Anwesh Mishra',4,'anwesh.mishra@cs.christuniversity.in','2014-11-16',70,60),(1425008,'Dukjam Gya',2,'dujkam.gya@cs.christuniversity.in','2014-11-18',70,60),(1425019,'Raphael Ribeiro',3,'raphael.ribeiro@cs.christuniversity.in','2014-11-17',60,50),(1425043,'Christine Mathayis',5,'renita.mathayis@cs.christuniversity.in','2014-12-16',65,70);
+INSERT INTO `student` VALUES (1425001,'Aju Anthony',7,'aju.anthony@cs.christuniversity.in','2015-01-06',60,70),(1425002,'Amlan Saikia',5,'amlan.saikia@cs.christuniversity.in','2014-11-20',80,60),(1425004,'Arjun RL',4,'arjun.r@christuniversity.in','2014-12-29',65,75),(1425006,'Ashish Koushik',6,'ashish.koushik@cs.christuniversity.in','2014-12-29',75,70),(1425008,'Dukjam Gya',2,'dujkam.gya@cs.christuniversity.in','2014-11-18',70,60),(1425009,'Gururaj Bagali',5,'gururaj.bagali@cs.christuniversity.in','2014-12-29',65,60),(1425010,'Ayesha Farheen',7,'ayesha.farheen@cs.christuniversity.in','2015-01-06',65,65),(1425011,'Jijo Joseph',7,'jijo.joseph@cs.christuniversity.in','2015-01-06',65,60),(1425012,'Leo Jose',1,'leo.jose@cs.christuniversity.in','2014-12-29',65,65),(1425013,'Lijo Joby',5,'lijo.joby@cs.christuniversity.in','2014-12-29',65,70),(1425019,'Raphael Ribeiro',3,'raphael.ribeiro@cs.christuniversity.in','2014-11-17',60,50),(1425020,'Sachin Giriyappanavar',1,'sachin.giriyappanavar@cs.christuniversity.in','2014-12-29',75,70),(1425023,'Ramachandran Tawker',2,'ramachandran.tawker@cs.christuniversity.in','2014-12-29',65,70),(1425028,'Yogeshwar MV',4,'yogeshwar.mv@cs.christuniversity.in','2014-12-29',65,60),(1425043,'Christine Mathayis',5,'renita.mathayis@cs.christuniversity.in','2014-12-16',65,70),(1425049,'Tashi Mishra',3,'tashi.mishra@cs.christuniversity.in','2014-12-29',75,70);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,4 +185,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-17 20:26:28
+-- Dump completed on 2015-01-06 14:37:18
