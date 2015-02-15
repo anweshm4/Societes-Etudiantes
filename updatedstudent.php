@@ -7,8 +7,8 @@
 
 	<body>
 	<?php
-		include "nav.php";
-		$con=mysqli_connect("localhost","root","") or die("not connected");
+		include "adminnav.php";
+		$con=mysqli_connect("localhost","admin","hobbyclub") or die("not connected");
 		//echo"Connection Established";
 		$db=mysqli_select_db($con, "Hobbyclub")or die('database not changed');
 		//echo'<br>'."Connection To Database Established"."<br>";

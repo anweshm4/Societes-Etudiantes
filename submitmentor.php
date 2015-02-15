@@ -8,19 +8,26 @@
 	<body>
 
 	<?php
-		include "nav.php";
-		$con=mysqli_connect("localhost","root","") or die("not connected");
+		include "adminnav.php";
+		$con=mysqli_connect("localhost","admin","hobbyclub") or die("not connected");
 		echo"Connection Established";
 		$db=mysqli_select_db($con, "Hobbyclub")or die('database not changed');
 		echo'<br>'."Connection To Database Established"."<br>";
 
 
-		echo $mentorid=$_POST['mentorid'];
 		echo $mentorname=$_POST['mentorname'];
 		echo $emailid=$_POST['emailid'];
-		echo $clubid=$_POST['clubid'];
+		echo $clubname=$_POST['selectclub'];
 		
-		$query=" INSERT INTO mentor (mentorid, mentorname, emailid, clubid) VALUES ($mentorid,'$mentorname','$emailid', $clubid);";
+		$sql="SELECT clubid from club where clubname='$clubname'";
+		$result = mysqli_query($con, $sql);
+
+		while($row = mysqli_fetch_assoc($result))
+    		{
+    			echo $clubid= $row['clubid'];
+    		}
+
+		$query=" INSERT INTO mentor (mentorname, emailid, clubid) VALUES ('$mentorname','$emailid', $clubid);";
 		mysqli_query($con, $query) or die(mysqli_error());
 		header('Location: viewmentor.php');
 	?>

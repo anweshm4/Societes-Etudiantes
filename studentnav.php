@@ -7,13 +7,16 @@
 
 		<ul class="menu">
 	    	<li><a href="index.php">Home</a></li>
+			<li><a href="#">View </a>
+	    	<ul class="submenu">
+	    		<li><a href='clubs.php'> Clubs </a></li>
+	    		<li><a href='championshiptable.php'> Championship </a> </li>
+	    	</ul>
 
-	    	
 
 	    
 
-	    	<li><a href="#">Events</a></li>
-	    	<li><a href="#">Login</a></li>	
+	    	<li><a href="events.php">Events</a></li>
 		</ul>
 	</div>
 </div>

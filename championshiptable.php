@@ -2,35 +2,37 @@
 	<head>
 		<link rel="stylesheet" href="css/style.css">
 		<link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-		<title> Championship Table </title>
+		<title> Championship table </title>
 	</head>
 
 	<body>
 	<?php
-		include "nav.php";
-		$con=mysqli_connect("localhost","root","") or die("not connected");
+		include "studentnav.php";
+		$con=mysqli_connect("localhost","admin","hobbyclub") or die("not connected");
 		//echo"Connection Established";
 		$db=mysqli_select_db($con, "Hobbyclub")or die('database not changed');
 		//echo'<br>'."Connection To Database Established"."<br>";
 		// Academic GP + Co-curricular GP of all students / total number of students
 		
-		$result=mysqli_query($con, "SELECT s.name, c.clubname, (s.AGP + s.CCGP) as Total from student s JOIN club c order by Total desc;") or die("Error");
+		$result=mysqli_query($con, "SELECT clubid , sum(AGP + CCGP) as Total from student group by clubid;") or die("Error");
 		$rank=1;
-		if (mysqli_num_rows($result) > 0)
-		{
-    	// output data of each row
-    	echo "<table border='1' cellpadding='5' cellspacing='5' width='90%'><thead> <tr><th>Club Name </th> <th> Total </th><th> Rank </th></tr> </thead> <br><br>";
-        while($row = mysqli_fetch_assoc($result))
-    	{	
-   		 	echo "<tr> <td>" . $row["name"]."</td>
-   		 	<td>". $row["Total"]. "</td>
-        	</tr>";
-        }	
+		echo "<table class='data'> <thead> <tr><th>Club Name </th> <th> Average </th><th> Rank </th></tr> </thead> <br><br>";
+	    
+	    while($row = mysqli_fetch_assoc($result))
+	    {	
+	    	$total=$row["Total"];
+	    	$clubid=$row['clubid'];
 
-	  	echo "</table>";
-	} 
-
-	else
- 	{
-    	echo "0 results";
-	}
+	   		$query=mysqli_query($con, "SELECT c.clubname, count(s.registerno)as studentno from club c NATURAL JOIN student s where c.clubid=$clubid;")or die("Error");
+	        	
+	        while($row = mysqli_fetch_assoc($query))
+	    	{
+	    		$clubname=$row['clubname'];
+	   			echo "<tr> <td> $clubname </td>";	
+				$studentno=$row['studentno'];
+				$avg=($total/$studentno);
+				echo "<td> $avg </td> </tr>";
+			}
+		}				
+	  		echo "</table>";
+	?>

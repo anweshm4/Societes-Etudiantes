@@ -7,8 +7,8 @@
 
 	<body>
 	<?php
-		include "nav.php";
-		$con=mysqli_connect("localhost","root","") or die("not connected");
+		include "adminnav.php";
+		$con=mysqli_connect("localhost","admin","hobbyclub") or die("not connected");
 		//echo"Connection Established";
 		$db=mysqli_select_db($con, "Hobbyclub")or die('database not changed');
 		//echo'<br>'."Connection To Database Established"."<br>";
@@ -25,7 +25,7 @@
 		if (mysqli_num_rows($result) > 0)
 		{
     		// output data of each row
-    		echo "<table border='1' cellpadding='5' cellspacing='5' width='90%'> <thead><tr><th> Mentor ID </th> <th> Name </th> <th> Email ID </th> <th> Club ID </th><th> Action </th></tr></thead>";
+    		echo "<table class='data'> <thead><tr><th> Mentor ID </th> <th> Name </th> <th> Email ID </th> <th> Club ID </th><th> Action </th></tr></thead>";
         
         	while($row = mysqli_fetch_assoc($result))
     		{	$name=$row['mentorname'];
@@ -38,7 +38,7 @@
         		</tr> </br>";
 	  		}
 	  	
-	  		echo "</table>";
+	  		echo "</table class='data'>";
 		}	 
 
 		else
