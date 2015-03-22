@@ -1,0 +1,62 @@
+DirectoryIndex index.php
+RewriteEngine On
+RewriteBase /HobbyClub/
+
+RewriteRule ^home/?$ index.php [L,NC]
+RewriteRule ^login/?$ loginform.php [L,NC]
+RewriteRule ^loginformerror/?$ loginformerror.php [L,NC]
+RewriteRule ^events/?$ events.php [L,NC]
+RewriteRule ^loginerror/?$ loginformerror.php [L,NC]
+RewriteRule ^createstudent/?$ createstudent.php [L,NC]
+RewriteRule ^createevent/?$ createevent.php [L,NC]
+RewriteRule ^creatementor/?$ creatementor.php [L,NC]
+RewriteRule ^createclub/?$ createclub.php [L,NC]
+RewriteRule ^createsession/?$ createsession.php [L,NC]
+RewriteRule ^createevent/?$ createevent.php [L,NC]
+RewriteRule ^changeclub/?$ changeclub.php [L,NC]
+RewriteRule ^viewstudent/?$ viewstudent.php [L,NC]
+RewriteRule ^viewguestlecturer/?$ viewguestlecturer.php [L,NC]
+RewriteRule ^viewevent/?$ viewevent.php [L,NC]	
+RewriteRule ^viewclub/?$ viewclub.php [L,NC]
+RewriteRule ^viewmentor/?$ viewmentor.php [L,NC]
+RewriteRule ^viewsession/?$ viewsession.php [L,NC]
+RewriteRule ^viewpresident/?$ viewpresident.php [L,NC]
+RewriteRule ^appointpresident/?$ appointpresident.php [L,NC]
+RewriteRule ^mentorownclub/?$ mentorownclub.php [L,NC]
+RewriteRule ^championshiptable/?$ championshiptable.php [L,NC]
+RewriteRule ^clubguestlecturer/?$ viewclubguestlecturer.php [L,NC]
+RewriteRule ^clubs/?$ clubs.php [L,NC]
+RewriteRule ^architecture/?$ club.php?id=1 [L,NC]
+RewriteRule ^programming/?$ club.php?id=2 [L,NC]
+RewriteRule ^digitalArt/?$ club.php?id=3 [L,NC]
+RewriteRule ^gaming/?$ club.php?id=4 [L,NC]
+RewriteRule ^music/?$ club.php?id=5 [L,NC]
+RewriteRule ^literature/?$ club.php?id=6 [L,NC]
+RewriteRule ^painting/?$ club.php?id=7 [L,NC]
+RewriteRule ^theatre/?$ club.php?id=8 [L,NC]
+RewriteRule ^cinema/?$ club.php?id=9 [L,NC]
+RewriteRule ^culinaryarts/?$ club.php?id=10 [L,NC]
+RewriteRule ^drawing/?$ club.php?id=11 [L,NC]
+RewriteRule ^photography/?$ club.php?id=12 [L,NC]
+RewriteRule ^architecturestudents/?$ clubstudents.php?id=1 [L,NC]
+RewriteRule ^programmingstudents/?$ clubstudents.php?id=2 [L,NC]
+RewriteRule ^digitalArtstudents/?$ clubstudents.php?id=3 [L,NC]
+RewriteRule ^gamingstudents/?$ clubstudents.php?id=4 [L,NC]
+RewriteRule ^musicstudents/?$ clubstudents.php?id=5 [L,NC]
+RewriteRule ^musicstudents/?$ clubstudents.php?id=6 [L,NC]
+RewriteRule ^literaturestudents/?$ clubstudents.php?id=7 [L,NC]
+RewriteRule ^theatrestudents/?$ clubstudents.php?id=8 [L,NC]
+RewriteRule ^cinemastudents/?$ clubstudents.php?id=9 [L,NC]
+RewriteRule ^culinaryartsstudents/?$ clubstudents.php?id=10 [L,NC]
+RewriteRule ^drawingstudents/?$ clubstudents.php?id=11 [L,NC]
+RewriteRule ^photographystudents/?$ clubstudents.php?id=12 [L,NC]
+
+
+
+
+
+
+
+
+
+

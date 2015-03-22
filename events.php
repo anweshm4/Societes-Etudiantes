@@ -10,11 +10,7 @@
 	</head>
 
 	<?php
-		include "studentnav.php";
-		$con=mysqli_connect("localhost","admin","hobbyclub") or die("not connected");
-		//echo"Connection Established";
-		$db=mysqli_select_db($con, "Hobbyclub")or die('database not changed');
-		//echo'<br>'."Connection To Database Established"."<br>";
+		include"guestuseraccess.php";
 	?>
 
 
@@ -23,18 +19,45 @@
 
 		<div id="calendar"></div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-ui-datepicker.min.js"></script>
 	<script>
+
 		$('#calendar').datepicker({
+			onSelect: function(date)
+			{				
+				xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange=function()
+				{
+					if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+						document.getElementById("result").innerHTML=xmlhttp.responseText;
+					}
+				}
+
+				xmlhttp.open("GET","printevent.php?date="+date);
+				xmlhttp.send();
+			},
+			dateFormat: 'yy-mm-dd',
 			inline: true,
+			selectWeek:true,
 			firstDay: 1,
 			showOtherMonths: true,
 			dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-		});
+			});
+
+
+</script>
 	</script>
 
-	<div class='showevents'> 
+	<div class='eventdetails'>
+		<div> 
+			<p class='eventheader'> Event Details </p>
+			<hr>
+			<div id="result" class='eventdata'> 
+			</div>
+		</div>
+	</div>
 	
 	</body>
 

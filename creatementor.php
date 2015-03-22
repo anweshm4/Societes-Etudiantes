@@ -36,6 +36,13 @@
     		?>	
 			<br>
 			<input type="submit" value="Submit"> 
+			<?php
+			if (isset($_GET['Message'])) 
+			{
+				$message=$_GET['Message'];
+ 		   		echo "<script type='text/javascript'>alert('$message');</script>";
+			}
+			?>	
 		</form>
 	</body>
 </html> 

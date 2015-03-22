@@ -29,6 +29,9 @@
 		$sql = "SELECT * FROM student where registerno=".$updateid;
 		$result = mysqli_query($con, $sql);
 
+		$query="SELECT clubname from club";
+		$club = mysqli_query($con, $query);
+
 		?>
 		<form name="update" method="POST" action="updatedstudent.php" class="update">
 		<?php
@@ -36,14 +39,14 @@
 		if (mysqli_num_rows($result) > 0)
 		{
     		// output data of each row
-    		echo "<table class='data'> <thead><tr><th> Register Number </th> <th> Name </th> <th> Club ID </th> <th> Email ID </th> <th> Joining Date </th> <th> AGP </th> <th> CCGP </th> <th> Action </th></tr></thead>";
+    		echo "<table class='data'> <thead><tr><th> Register Number </th> <th> Name </th>  <th> Email ID </th> <th> Joining Date </th> <th> AGP </th> <th> CCGP </th> <th> Action </th></tr></thead>";
         
         	while($row = mysqli_fetch_assoc($result))
     		{	$name=$row['name'];
+    			$president=$row['presidentid'];
    		 		echo "<input type='hidden' name='registerno' value=".$row['registerno'].">
    		 		<tr> <td>".$row['registerno']."</td>
         		<td><input type='text' name='name' pattern='[A-Za-z]+\s[A-Za-z]+' title='Only alphabets allowed' value='$name'> </td>
-        		<td><input type='text' name='clubid' required pattern='[0-9]{2}' title='Enter 2 digit Hobby ID Club' value=". $row["clubid"]. "></td>
         		<td><input type='email' name='emailid' value=". $row["emailid"]. "></td>
         		<td><input type='text' name='joindate' pattern='[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])' id='datepicker' title='Enter Date in YYYY-MM-DD format' required value=" . $row["joindate"]. "></td>
         		<td><input type='text' placeholder='Academic Grade Point' name='agp' required pattern='[0-9]{2}' title='Enter 2 digit Academic Grade Point' value=".$row['AGP']."> </td>

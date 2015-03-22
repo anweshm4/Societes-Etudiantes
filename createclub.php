@@ -18,6 +18,8 @@
 			<h2> Create Club </h2>
 			<input type="text" placeholder="Club Name" name="clubname" pattern="[A-Za-z]+" title="Only alphabets allowed" required> <br>
 			<input type="text" placeholder="Class Room" name="classroomid" pattern="[0-9]{3}"required> <br>
+			<input type="text" placeholder="Alternate Class Room" name="alternateclassroomid" pattern="[0-9]{3}"required> <br>
+			
 			<br>
 			<input type="submit" value="Submit">
 		</form>

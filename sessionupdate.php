@@ -36,14 +36,13 @@
 		if (mysqli_num_rows($result) > 0)
 		{
     		// output data of each row
-    		echo "<table class='data'> <thead><tr><th> Session ID </th> <th> Name </th> <th> Club ID </th> <th> Date <th> Action </th></tr></thead>";
+    		echo "<table class='data'> <thead><tr><th> Session ID </th> <th> Name </th> <th> Date <th> Action </th></tr></thead>";
         
         	while($row = mysqli_fetch_assoc($result))
     		{	$name=$row['name'];
    		 		echo "<input type='hidden' name='sessionid' value=".$row['sessionid'].">
    		 		<tr> <td>".$row['sessionid']."</td>
         		<td><input type='text' name='name' pattern='[A-Za-z]+\s[A-Za-z]+' title='Only alphabets allowed' value='$name'> </td>
-        		<td><input type='text' name='clubid' required pattern='[0-9]{2}' title='Enter 2 digit Hobby ID Club' value=". $row["clubid"]. "></td>
         		<td><input type='text' name='sessiondate' pattern='[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])' id='datepicker' title='Enter Date in YYYY-MM-DD format' required value=".$row["sessiondate"]. "></td>
         		<td> <input type='submit' value='Save'></td>	
         		</tr> </br>";

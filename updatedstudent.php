@@ -15,13 +15,13 @@
 
 		echo $registerno=$_POST['registerno'];
 		echo $studentname=$_POST['name'];
-		echo $clubid=$_POST['clubid'];
 		echo $emailid=$_POST['emailid'];
 		echo $joindate=$_POST['joindate'];
 		echo $agp=$_POST['agp'];
 		echo $ccgp=$_POST['ccgp'];
 
-		$query=" UPDATE student SET name='$studentname', clubid=$clubid, emailid='$emailid', joindate='$joindate', AGP=$agp, CCGP=$ccgp where registerno=$registerno;";
+
+		$query=" UPDATE student SET name='$studentname', emailid='$emailid', joindate='$joindate', AGP=$agp, CCGP=$ccgp where registerno=$registerno;";
 		mysqli_query($con, $query) or die(mysqli_error());
 		header('Location: viewstudent.php');
 	?>

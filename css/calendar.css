@@ -30,7 +30,7 @@
 	position: relative;
 	padding-bottom: 15px;
 	border-bottom: 1px solid #d6d6d6;
-	font-size: 15px;
+	font-size: 17px;
 }
 
 .ui-datepicker-title { text-align: center; }
@@ -110,7 +110,7 @@
 
 /* Calendar "Days" */
 .ui-datepicker-calendar th {
-	padding-top: 10px;
+	padding-top: 25px;
 	padding-bottom: 10px;
 	
 	text-align: center;
@@ -127,7 +127,7 @@
 
 .ui-datepicker-calendar .ui-state-default {
 	display: block;
-	width: 65px;
+	width: 70px;
 	outline: none;
 
 	text-decoration: none;

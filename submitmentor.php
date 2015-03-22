@@ -18,6 +18,25 @@
 		echo $mentorname=$_POST['mentorname'];
 		echo $emailid=$_POST['emailid'];
 		echo $clubname=$_POST['selectclub'];
+
+		$Message="Already Existing Email-ID! Please Enter Values Again.";
+		$query="SELECT emailid from mentor";
+
+		$res = mysqli_query($con, $query);
+		while($row1 = mysqli_fetch_assoc($res))
+    	{
+    		$existingemailid=$row1['emailid'];
+    		$existingemailid= preg_replace('/\s+/', '', $existingemailid);
+    		$emailid= preg_replace('/\s+/', '', $emailid);
+			
+			if($existingemailid==$emailid)
+    		{
+    			echo "<br><br> Matched";
+    			header("Location:creatementor.php?Message=" . urlencode($Message));
+    			exit(0);
+    		}
+    	}
+    	
 		
 		$sql="SELECT clubid from club where clubname='$clubname'";
 		$result = mysqli_query($con, $sql);

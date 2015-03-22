@@ -17,8 +17,9 @@
 
 		 echo $clubname=$_POST['clubname'];
 		 echo $classroom=$_POST['classroomid'];
+		 echo $alternateclassroomid=$_POST['alternateclassroomid'];
 
-		$query=" INSERT INTO club (clubname, classroomid) VALUES ('$clubname', $classroom);";
+		$query=" INSERT INTO club (clubname, classroomid, alternateclassroomid) VALUES ('$clubname', $classroom, $alternateclassroomid);";
 		if(!mysqli_query($con, $query)) 
 		{
 			echo "Error in Query : ".(mysqli_error($con));

@@ -25,7 +25,7 @@
 		if (mysqli_num_rows($result) > 0)
 		{
     		// output data of each row
-    		echo "<table class='data'> <thead><tr><th> Mentor ID </th> <th> Name </th> <th> Email ID </th> <th> Club ID </th><th> Action </th></tr></thead>";
+    		echo "<table class='data'> <thead><tr><th> Mentor ID </th> <th> Name </th> <th> Email ID </th> <th> Action </th></tr></thead>";
         
         	while($row = mysqli_fetch_assoc($result))
     		{	$name=$row['mentorname'];
@@ -33,7 +33,6 @@
    		 		<tr> <td>".$row['mentorid']."</td>
         		<td><input type='text' name='name' pattern='[A-Za-z]+\s[A-Za-z]+' title='Only alphabets allowed' value='$name'> </td>
         		<td><input type='email' name='emailid' value=". $row["emailid"]. "></td>
-        		<td><input type='text' name='clubid' required pattern='[0-9]{2}' title='Enter 2 digit Hobby ID Club' value=". $row["clubid"]. "></td>
         		<td> <input type='submit' value='Save'></td>	
         		</tr> </br>";
 	  		}

@@ -15,10 +15,9 @@
 
 		echo $sessionid=$_POST['sessionid'];
 		echo $name=$_POST['name'];
-		echo $clubid=$_POST['clubid'];
 		echo $date=$_POST['sessiondate'];
 
-		$query=" UPDATE session SET name='$name', clubid=$clubid, sessiondate='$date' where sessionid=$sessionid;";
+		$query=" UPDATE session SET name='$name', sessiondate='$date' where sessionid=$sessionid;";
 		mysqli_query($con, $query) or die(mysqli_error());
 		header('Location: viewsession.php');
 	?>

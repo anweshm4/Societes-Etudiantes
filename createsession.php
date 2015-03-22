@@ -20,7 +20,14 @@
 	<body>
 		
 		<?php
+			$con=mysqli_connect("localhost","admin","hobbyclub") or die("not connected");
+			//echo"Connection Established";
+			$db=mysqli_select_db($con, "Hobbyclub")or die('database not changed');
+			//echo'<br>'."Connection To Database Established"."<br>";
+			
 			include "adminnav.php";
+
+			$sql="SELECT clubname from club";
 			
 		?>
 		<br><br><br>
@@ -28,7 +35,16 @@
 		<form name="createclub" method="POST" action="submitsession.php" class="create">
 			<h2> Create Session </h2>
 			<input type="text" placeholder="Session Name" name="sessionname" pattern="[A-Za-z]+" title="Only alphabets allowed" required> <br>
-			<input type="text" placeholder="Club ID" name="clubid" pattern="[0-9]{2}"required> 
+			<select name='selectclub'>
+			<?php
+				$result = mysqli_query($con, $sql);
+				while($row = mysqli_fetch_assoc($result))
+    			{
+    				$clubname=$row['clubname'];
+    				echo " <option value='$clubname'> $clubname </option>";
+    			}
+    		?>	
+			<br>
 			<input type="text" placeholder="Date in YYYY-MM-DD format" name="date" id='datepicker' pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Enter Date in YYYY-MM-DD format" required> <br>
 			<br>
 			<br>

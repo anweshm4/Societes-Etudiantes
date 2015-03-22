@@ -22,10 +22,19 @@
 
 
 		echo $name=$_POST['sessionname'];
-		echo $clubid=$_POST['clubid'];
+		echo $clubname=$_POST['selectclub'];
 		echo $date=$_POST['date'];
+
+		$sql="SELECT clubid from club where clubname='$clubname'";
+		$result = mysqli_query($con, $sql);
+
+		while($row = mysqli_fetch_assoc($result))
+    		{
+    			echo $clubid= $row['clubid'];
+    		}
 		
 		$query=" INSERT INTO session (name, clubid, sessiondate) VALUES ('$name', $clubid, '$date');";
 		mysqli_query($con, $query) or die(mysqli_error());
 		header('Location: viewsession.php');
 	?>
+ 

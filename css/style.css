@@ -582,8 +582,32 @@ iframe
 
 /*----------------------------------- */
 
-.eventdetails
+.eventdetails 
 {
+    position:fixed;
     width:50%;
-    top:12%;
+    top:10%;
+    left:50%;
+    background-color: rgba(0,0,0,0.6);
+    font-family: Tahoma;
+    font-size: 15px;
+    color:white;
+}
+
+.eventdetails .eventheader
+{
+    text-align: center;
+    margin-top: 9.5%;
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
+.eventdetails hr
+{
+    width:85%;
+}
+
+.eventdetails .eventdata
+{
+    margin-left: 7%;
 }

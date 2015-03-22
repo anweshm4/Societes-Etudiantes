@@ -31,8 +31,7 @@
 		<div class="box">
 		<form name="createrecord" method="POST" action="submitform.php" class="create">
 			<h2> Create Student Record </h2>
-			<input type="text" placeholder="Register Number" name="registerno" required pattern="[0-9]{7}" title="Please Enter 7 digit Register Number"><br>
-			<input type="text" placeholder="Full Name" name="name" pattern="[A-Za-z]+\s[A-Za-z]+" title="Only alphabets allowed" required> <br>
+			<input type="text" placeholder="Full Name" name="name" pattern="[A-Za-z]+\s[A-Za-z]+" title="Alphabets only; Enter both first and surname" required> <br>
 			<select name='selectclub'>
 			<?php
 				$result = mysqli_query($con, $sql);
@@ -42,12 +41,19 @@
     				echo " <option value='$clubname'> $clubname </option>";
     			}
     		?>		
-			<input type="email" placeholder="Email ID" name="emailid" required> <br>
+			<input type="email" placeholder="Email ID" name="emailid" required> <br>			
 			<input type="text" placeholder="Date in YYYY-MM-DD format" name="date" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" id="datepicker" title="Enter Date in YYYY-MM-DD format" required> <br>
 			<input type="text" placeholder="Academic Grade Point" name="agp" required pattern="[0-9]{2}" title="Enter 2 digit Academic Grade Point"> <br>
 			<input type="text" placeholder="Co-Curricular Grade Point" name="ccgp" required pattern="[0-9]{2}" title="Enter 2 digit Co-Curricular Grade Point"> <br>
 			<br>
 			<input type="submit" value="Submit"> 
+			<?php
+			if (isset($_GET['Message'])) 
+			{
+				$message=$_GET['Message'];
+ 		   		echo "<script type='text/javascript'>alert('$message');</script>";
+			}
+			?>	
 		</form>
 	</body>
 </html> 

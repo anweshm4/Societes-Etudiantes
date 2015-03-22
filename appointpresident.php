@@ -8,7 +8,7 @@
 	<body>
 
 	<?php
-		include "adminnav.php";
+		include "useraccesscheck.php";
 		$con=mysqli_connect("localhost","admin","hobbyclub") or die("not connected");
 		echo"Connection Established";
 		$db=mysqli_select_db($con, "Hobbyclub")or die('database not changed');
@@ -22,8 +22,22 @@
     	{	
     		echo $clubid=$row["clubid"];
 			$query=" UPDATE president SET registerno=$registerno where clubid=$clubid  ;";
-			mysqli_query($con, $query) or die(mysqli_error());
+			mysqli_query($con, $query) or die(mysqli_error());		
 		}
+
+		$query="SELECT presidentid from president where registerno=$registerno";
+		$result = mysqli_query($con, $query);
+		while($row = mysqli_fetch_assoc($result))
+    	{	
+    		echo $presidentid=$row["presidentid"];
+		}
+
+		$query="UPDATE student set presidentid=NULL where presidentid=$presidentid";
+		mysqli_query($con, $query) or die(mysqli_error());
+		
+		$query=" UPDATE student SET presidentid=$presidentid where registerno=$registerno;";
+			mysqli_query($con, $query) or die(mysqli_error());		
 
 		header('Location: viewpresident.php');
 	?>
+
